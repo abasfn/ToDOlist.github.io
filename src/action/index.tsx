@@ -1,4 +1,6 @@
-export const AddList = (item:string) => {
+import { ToDoItem } from "../models/i"
+
+export const AddList = (item:ToDoItem) => {
 return {
     type:"ADD-LIST",
     paylood:item

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddList, remove, setcheckboxes } from '../action';
+import { ToDoItem } from '../models/i';
 import './todolist.css';
 const ToDoList = () => {
 
@@ -13,32 +14,29 @@ const ToDoList = () => {
 
     const handleKeyPress = (e: any) => {
         if (e.key === 'Enter') {
-            const initialState: any = [
-                { title: input, complete: false }
-            ]
+            const initialState: ToDoItem = { title: input, complete: false }
             dispach(AddList(initialState))
+            setinpt('')
         }
     }
     const deleteItem = (index: any) => {
-        // debugger;
         dispach(remove(index))
     }
     const onChangeChekboxs = (index: any) => {
-        // debugger;
         dispach(setcheckboxes(index))
     }
-    // debugger;
-    let arrey = container.filter((item: any) => item.complete === true);
-    console.log(arrey);
+    const complete = () => {
+        return container.filter((item: any) => item.complete === true);
+    }
     return (
         <div className="contaner">
             <div>
-                <input onKeyPress={handleKeyPress} onChange={onChangeInput} />
+                <input value={input} onKeyPress={handleKeyPress} onChange={onChangeInput} />
                 {container.map((item: any, index: any) => {
                     return (
                         <div className="left">
                             <div className="item-and-chekboxs">
-                                <input onClick={() => onChangeChekboxs(index)} className="checkbox" type="checkbox" />
+                                <input checked={item.complete} onClick={() => onChangeChekboxs(index)} className="checkbox" type="checkbox" />
                                 {item.complete === true ? <li><del>{item.title}</del></li>
                                     : <li>{item.title}</li>}
                             </div>
@@ -47,8 +45,8 @@ const ToDoList = () => {
                     )
                 })}
                 <div className="text">
-                    <h2>{container.length - arrey.length}task left</h2>
-                    <h2>{arrey.length}task complete</h2>
+                    <h2>{container.length - complete().length}task left</h2>
+                    <h2>{complete().length}task complete</h2>
                 </div>
             </div>
             <div>
