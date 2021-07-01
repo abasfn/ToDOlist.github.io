@@ -1,13 +1,7 @@
 
-const initialState: any = [
-    { title: "", complete: false }
-]
 export const reduser = (state: any = [], action: any) => {
     if (action.type === "ADD-LIST") {
-        // const indexOf = state.data.indexOf(action.paylood)
-        // if (indexOf >= 0) {
-        //     return state
-        // }
+        // debugger;
         state = [...state, ...action.paylood]
         return state;
     }
@@ -26,6 +20,6 @@ export const reduser = (state: any = [], action: any) => {
         state[action.paylood].complete = true
         return [...state]
     }
-    return state
+    return [...state]
 }
 
