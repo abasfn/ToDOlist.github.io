@@ -15,9 +15,9 @@ li{
 
 }
 .contaner{
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-gap: 10px;
+  margin: auto;
+  margin-top: 20px;
+  width: 50%;
 }
 input{
     width: 100%;
@@ -48,3 +48,15 @@ h2{
     grid-template-columns: 70% 50%;
 
 }
+@media only screen and (max-width: 600px) {
+    .contaner {
+    width: 96%;
+    }
+    h2{
+      font-size: 18px;
+    }
+    .text{
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+  }
